@@ -20,7 +20,7 @@ def getdata():
     rd = Reader()
     rd.openExplorer()
     data = pandas.read_csv(filepath_or_buffer=rd.path, sep  = ";")
-    return data["Quelle"].to_list()
+    return data.iloc[:, 0]
 
 def popups(driver):
     try:
