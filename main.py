@@ -1,20 +1,16 @@
 import selenium.common.exceptions
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
 import time
 from bs4 import BeautifulSoup
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import os
 import datetime
-from selenium.webdriver.chrome.service import Service
-import math
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
 import pandas
 from Reader import Reader
 from selenium.common.exceptions import TimeoutException
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 
 def getdata():
     rd = Reader()
@@ -40,7 +36,7 @@ def tableAvailable(driver):
 
 daten = getdata()
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 def load_page_with_timeout(url, timeout, retries):
     attempt = 0
